@@ -187,7 +187,7 @@ Proyek ini menggunakan lisensi **MIT** — bebas digunakan dan dimodifikasi untu
 
 ## 👤 Pembuat
 
-**Ferr-Hanni**
+**Feri-Ferdianto**
 Tugas Akhir — Jurusan PPLG (Pengembangan Perangkat Lunak dan Gim)
 
 ---
