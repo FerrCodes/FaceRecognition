@@ -1,0 +1,14 @@
+[
+    {
+        "file": "contoh1.jpg",
+        "status": "DIKENAL",
+        "jarak_cosine": -0.0,
+        "waktu": "2026-05-29T16:32:13.797191"
+    },
+    {
+        "file": "contoh2.jpg",
+        "status": "DIKENAL",
+        "jarak_cosine": 0.134261,
+        "waktu": "2026-05-29T16:32:27.831721"
+    }
+]
