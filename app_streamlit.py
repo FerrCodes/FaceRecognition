@@ -1,27 +1,17 @@
 import os
-import sys
 import tempfile
 from PIL import Image
 import streamlit as st
-
-# Pastikan OpenCV bisa jalan
-try:
-    import cv2
-except ImportError:
-    os.system("pip install opencv-python-headless==4.10.0.84")
-    import cv2
-
 from deepface import DeepFace
 
-# Konfigurasi halaman
+# Halaman konfigurasi
 st.set_page_config(page_title="Face Recognition", page_icon="📸")
 st.title("📸 Face Recognition - Upload Foto")
 
-# Path referensi
+# Path foto referensi
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 REFERENCE_IMAGE = os.path.join(BASE_DIR, "foto_dari_hp", "contoh1.jpg")
 
-# Upload foto
 uploaded_file = st.file_uploader("Pilih foto wajah (jpg/jpeg/png)...", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
@@ -52,7 +42,6 @@ if uploaded_file is not None:
         except Exception as e:
             st.error(f"Error: {e}")
 
-    # Hapus file sementara
     os.unlink(tmp_path)
 else:
     st.info("📤 Upload foto wajah untuk memulai deteksi.")
