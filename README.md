@@ -1,55 +1,34 @@
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![DeepFace](https://img.shields.io/badge/DeepFace-FaceNet-green)
-![License](https://img.shields.io/badge/License-MIT-yellow)
 ![Status](https://img.shields.io/badge/Status-Selesai-brightgreen)
 
-# 📸 Face Recognition System — Smartphone to PC
+# Face Recognition System - Smartphone to PC
 
-Sistem pengenalan wajah yang menerima foto dari **smartphone**, memprosesnya di **PC**, dan menghasilkan laporan identifikasi dalam format **JSON** dan **Excel**.
-
----
-
-## 📌 Tentang Proyek
-
-Proyek ini dibuat sebagai **Tugas Akhir** jurusan **PPLG (Pengembangan Perangkat Lunak dan Gim)**. Tujuannya adalah membangun sistem yang dapat:
-
-- ✅ Menerima foto wajah dari smartphone
-- ✅ Memproses banyak foto sekaligus (*batch processing*)
-- ✅ Membandingkan wajah dengan foto referensi menggunakan **FaceNet512**
-- ✅ Menghasilkan laporan dalam format **JSON** dan **Excel**
+Sistem pengenalan wajah berbasis web yang menerima foto dari **smartphone**, memprosesnya secara **online**, dan menghasilkan laporan dalam format **Excel**.
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## Tentang Proyek
 
-| Teknologi             | Fungsi                                     |
-| --------------------- | ------------------------------------------ |
-| **Python 3.11**       | Bahasa pemrograman utama                   |
-| **DeepFace**          | Library face recognition                   |
-| **FaceNet512**        | Model deep learning untuk pengenalan wajah |
-| **OpenCV**            | Pemrosesan gambar                          |
-| **Pandas & Openpyxl** | Ekspor hasil ke Excel                      |
-| **VSCode**            | Editor kode                                |
+Proyek ini adalah sistem **pengenalan wajah** yang membandingkan foto yang diupload dengan satu **foto referensi**. Aplikasi ini memiliki dua mode:
+
+| Mode | Fungsi |
+|------|--------|
+| **Single Upload** | Upload satu foto → hasil langsung |
+| **Batch Upload & Export** | Upload banyak foto → proses semua → download Excel |
 
 ---
 
-## 📁 Struktur Proyek
+## Teknologi yang Digunakan
 
-```
-FaceRecognition-Final/
-│
-├── foto_dari_hp/           # Folder untuk menyimpan foto dari smartphone
-│   ├── contoh1.jpg         # Foto referensi utama (wajah yang dikenal)
-│   ├── contoh1_variasi.jpg # Variasi foto wajah yang sama
-│   └── contoh2.jpg         # Foto wajah berbeda (tidak dikenal)
-│
-├── deteksi_dari_hp.py      # Script utama — deteksi & verifikasi wajah
-├── to_Excel.py             # Script ekspor hasil JSON ke Excel
-├── coba_wajah.py           # Script percobaan awal
-├── test.py                 # Script pengujian
-├── hasil_deteksi.json      # Output hasil deteksi (format JSON)
-└── hasil_deteksi_dengan_foto.xlsx  # Output laporan (format Excel)
-```
+| Teknologi | Fungsi |
+|-----------|--------|
+| **Python 3.11** | Bahasa pemrograman utama |
+| **DeepFace** | Library face recognition |
+| **FaceNet** | Model deep learning untuk pengenalan wajah |
+| **Streamlit** | Framework web untuk antarmuka |
+| **Pandas & Openpyxl** | Ekspor hasil ke Excel |
+| **OpenCV** | Pemrosesan gambar |
 
 ---
 
@@ -82,114 +61,61 @@ FaceRecognition-Final/
 
 ---
 
-## 🚀 Cara Menjalankan Proyek
+## Fitur Aplikasi
 
-### 1. Clone repository ini
+### 1. Single Upload
+- Upload satu foto wajah
+- Hasil langsung: DIKENAL atau TIDAK DIKENAL
+- Tampilkan jarak cosine
 
-```bash
-git clone https://github.com/Ferr-Hanni/FaceRecognition-Final.git
-cd FaceRecognition-Final
-```
-
-### 2. Install dependensi yang dibutuhkan
-
-```bash
-pip install deepface opencv-python pandas openpyxl
-```
-
-> **Catatan:** DeepFace akan otomatis mengunduh model FaceNet512 saat pertama kali dijalankan. Pastikan koneksi internet tersedia.
-
-### 3. Siapkan foto referensi
-
-Letakkan foto wajah referensi (wajah yang ingin dikenali) di dalam folder `foto_dari_hp/` dengan nama `contoh1.jpg`.
-
-```
-foto_dari_hp/
-└── contoh1.jpg   ← foto referensi kamu
-```
-
-### 4. Masukkan foto dari HP
-
-Pindahkan foto-foto dari smartphone (via USB, Google Drive, WhatsApp, dll.) ke dalam folder `foto_dari_hp/`. Format yang didukung: `.jpg`, `.jpeg`, `.png`.
-
-### 5. Jalankan deteksi wajah
-
-```bash
-python deteksi_dari_hp.py
-```
-
-Contoh output di terminal:
-```
-Menemukan 3 foto. Memproses...
-
-contoh1.jpg: DIKENAL (jarak=0.0000)
-contoh1_variasi.jpg: DIKENAL (jarak=0.1523)
-contoh2.jpg: TIDAK DIKENAL (jarak=0.7234)
-
-✅ Selesai. Hasil disimpan di hasil_deteksi.json
-```
-
-### 6. Export hasil ke Excel
-
-```bash
-python to_Excel.py
-```
-
-File `hasil_deteksi_dengan_foto.xlsx` akan dibuat secara otomatis.
+### 2. Batch Upload & Export
+- Upload banyak foto sekaligus
+- Proses semua foto dengan progress bar
+- Tampilkan tabel hasil di web
+- **Download hasil dalam format Excel**
 
 ---
 
-## 📊 Hasil Pengujian
+## Contoh Hasil Pengujian
 
-| File                  | Status        | Jarak Cosine |
-| --------------------- | ------------- | ------------ |
-| contoh1.jpg           | DIKENAL       | 0.0000       |
-| contoh1\_variasi.jpg  | DIKENAL       | 0.1523       |
-| contoh2.jpg           | TIDAK DIKENAL | 0.7234       |
+| File | Status | Jarak Cosine |
+|------|--------|---------------|
+| contoh1.jpg | DIKENAL | 0.0000 |
+| contoh1_variasi.jpg | DIKENAL | 0.1523 |
+| contoh2.jpg | TIDAK DIKENAL | 0.7234 |
 
-> **Catatan Threshold:**
-> - Jarak cosine **< 0.4** → wajah dianggap **sama (DIKENAL)**
-> - Jarak cosine **> 0.6** → wajah dianggap **berbeda (TIDAK DIKENAL)**
->
+> **Catatan:** Jarak cosine < 0.4 = wajah sama, > 0.6 = wajah berbeda.  
 > Foto contoh menggunakan wajah generatif AI dari [ThisPersonDoesNotExist.com](https://thispersondoesnotexist.com) untuk menjaga privasi.
 
 ---
 
-## ⚙️ Cara Kerja Deteksi
+## Struktur Folder
+```
+FaceRecognition/
+├── app_streamlit.py          # Aplikasi web utama
+├── deteksi_dari_hp.py        # Script deteksi batch (terminal)
+├── to_excel.py               # Export ke Excel
+├── requirements.txt          # Daftar library
+├── README.md                 # Dokumentasi
+├── foto_dari_hp/             # Folder foto contoh
+│   ├── contoh1.jpg           # Foto referensi
+│   └── contoh2.jpg           # Foto uji coba
+├── hasil_deteksi.json        # Hasil deteksi (JSON)
+└── hasil_deteksi.xlsx        # Laporan Excel
+```
+---
 
-Script `deteksi_dari_hp.py` bekerja dengan langkah-langkah berikut:
-
-1. **Membaca folder** `foto_dari_hp/` dan mengumpulkan semua file gambar (`.jpg`, `.jpeg`, `.png`).
-2. **Menggunakan `DeepFace.verify()`** dengan model `Facenet512` untuk membandingkan setiap foto dengan foto referensi (`contoh1.jpg`).
-3. **Menghitung jarak cosine** antara dua embedding wajah. Semakin kecil jaraknya, semakin mirip wajahnya.
-4. **Menentukan status** wajah: `DIKENAL` atau `TIDAK DIKENAL` berdasarkan nilai threshold bawaan DeepFace.
-5. **Menyimpan seluruh hasil** ke file `hasil_deteksi.json` lengkap dengan timestamp.
+## 🎯 Pengembangan ke Depan
+- Menambahkan database banyak orang (lebih dari satu referensi)
+- Membuat REST API dengan Flask
+- Real-time detection menggunakan webcam
+- Menambahkan grafik hasil di Excel
 
 ---
 
-## 🐛 Troubleshooting
+## Pengembang
+- Feri Ferdianto
+-Kelas XI PPLG 3 - [SMKN 5 Malang]
+- Proyek Tugas Akhir Jurusan - Semester Akhir
 
-| Masalah | Solusi |
-|---|---|
-| `ModuleNotFoundError: deepface` | Jalankan `pip install deepface` |
-| File referensi tidak ditemukan | Pastikan `contoh1.jpg` ada di folder `foto_dari_hp/` |
-| Model FaceNet512 gagal diunduh | Periksa koneksi internet, lalu coba lagi |
-| Foto tidak terdeteksi wajah | Pastikan foto cukup terang dan wajah terlihat jelas |
-| Error saat export Excel | Jalankan `pip install openpyxl` |
-
----
-
-## 📝 Lisensi
-
-Proyek ini menggunakan lisensi **MIT** — bebas digunakan dan dimodifikasi untuk keperluan pembelajaran.
-
----
-
-## 👤 Pembuat
-
-**Feri-Ferdianto**
-Tugas Akhir — Jurusan PPLG (Pengembangan Perangkat Lunak dan Gim)
-
----
-
-> 💡 *Proyek ini dibuat untuk keperluan pendidikan dan demonstrasi teknologi face recognition berbasis deep learning.*
+Email: [ferdiantoferi1303@gmail.com]
