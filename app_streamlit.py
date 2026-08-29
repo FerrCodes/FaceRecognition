@@ -1,16 +1,14 @@
-import os
-import tempfile
-from PIL import Image
 import streamlit as st
 from deepface import DeepFace
+import tempfile
+import os
+from PIL import Image
 
-# Halaman konfigurasi
 st.set_page_config(page_title="Face Recognition", page_icon="📸")
 st.title("📸 Face Recognition - Upload Foto")
 
-# Path foto referensi
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-REFERENCE_IMAGE = os.path.join(BASE_DIR, "foto_dari_hp", "contoh1.jpg")
+# Foto referensi (pastikan file ini ada di folder foto_dari_hp)
+REFERENCE_IMAGE = "foto_dari_hp/contoh1.jpg"
 
 uploaded_file = st.file_uploader("Pilih foto wajah (jpg/jpeg/png)...", type=["jpg", "jpeg", "png"])
 
@@ -42,6 +40,7 @@ if uploaded_file is not None:
         except Exception as e:
             st.error(f"Error: {e}")
 
+    # Hapus file sementara
     os.unlink(tmp_path)
 else:
     st.info("📤 Upload foto wajah untuk memulai deteksi.")
