@@ -1,6 +1,8 @@
+import os
+os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "1"
+
 import streamlit as st
 from deepface import DeepFace
-import os
 import tempfile
 from PIL import Image
 
