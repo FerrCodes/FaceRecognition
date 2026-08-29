@@ -1,20 +1,28 @@
 import os
-os.environ["OPENCV_IO_ENABLE_OPENEXR"] = "1"
-
-import streamlit as st
-from deepface import DeepFace
+import sys
 import tempfile
 from PIL import Image
+import streamlit as st
 
-# Setting halaman
+# Pastikan OpenCV bisa jalan
+try:
+    import cv2
+except ImportError:
+    os.system("pip install opencv-python-headless==4.10.0.84")
+    import cv2
+
+from deepface import DeepFace
+
+# Konfigurasi halaman
 st.set_page_config(page_title="Face Recognition", page_icon="📸")
-st.title("Face Recognition - Upload Foto")
+st.title("📸 Face Recognition - Upload Foto")
 
-# Upload foto dari user
+# Path referensi
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+REFERENCE_IMAGE = os.path.join(BASE_DIR, "foto_dari_hp", "contoh1.jpg")
+
+# Upload foto
 uploaded_file = st.file_uploader("Pilih foto wajah (jpg/jpeg/png)...", type=["jpg", "jpeg", "png"])
-
-# Foto referensi (ganti sesuai nama file referensimu)
-REFERENCE_IMAGE = "foto_dari_hp/contoh1.jpg"
 
 if uploaded_file is not None:
     # Simpan file sementara
@@ -22,7 +30,7 @@ if uploaded_file is not None:
         tmp_file.write(uploaded_file.read())
         tmp_path = tmp_file.name
 
-    # Tampilkan foto yang diupload
+    # Tampilkan foto
     image = Image.open(uploaded_file)
     st.image(image, caption="Foto yang diupload", width=300)
 
