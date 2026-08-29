@@ -15,27 +15,13 @@ with st.expander("Tentang Projek Ini", expanded=True):
     •  Apa itu Face Recognition?
     Aplikasi ini adalah sistem pengenalan wajah yang membandingkan foto yang diupload dengan satu foto referensi.
     
-    •  Cara Kerja
-    1. Upload foto wajah (satu atau banyak)
-    2. Sistem akan mendeteksi wajah menggunakan FaceNet (model deep learning)
-    3. Wajah dibandingkan dengan foto referensi (`contoh1.jpg`)
-    4. Hasil: DIKENAL (jarak cosine < 0.4) atau TIDAK DIKENAL (jarak cosine > 0.6)
-    
-    •  Teknologi yang Digunakan
-    - Python 3.11
-    - DeepFace (library face recognition)
-    - FaceNet (model untuk mengenali wajah)
-    - Streamlit (framework web)
-    - Pandas & Openpyxl (export ke Excel)
-    
-    •  Alur Sistem
-    Smartphone (ambil foto) → Transfer ke PC → Folder foto_dari_hp
-    → Jalankan deteksi → DeepFace + FaceNet
-    → Hasil DIKENAL/TIDAK DIKENAL → Simpan ke Excel
+    •  Informasi untuk projek ini
+    Sementara UI/UX seperti ini dan Fitur juga dua mode untuk mendeteksi foto setelah diupload, karena lebih fokus pada 
+    perbaikan pada Sistem proses mendeteksi Foto dan baris Kode yang sedang diuji coba.
 
 ### Pengembang:
 Feri Ferdianto 
-Kelas XI PPLG - Tugas Akhir Jurusan
+Kelas XI PPLG 3 - Tugas Akhir Jurusan
 """)
 # ==========================================================
 
